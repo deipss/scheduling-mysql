@@ -69,23 +69,14 @@ public class TaskSchedulerImpl implements TaskScheduler<Boolean> {
 
     @Override
     public Boolean execute(Task<Boolean> task) {
-        String name = task.getClass().getName();
-        boolean lock = schedulingTaskMapper.lock(name, IpUtil.getIP(), LocalTime.now()) > 0;
-        if (!lock) {
-            log.info("上锁失败={}", name);
-            return false;
-        }
         try {
             CompletableFuture<Boolean> completableFuture = CompletableFuture.supplyAsync(task::execute, schedulingThreadPoolExecutor);
             return completableFuture.get();
         } catch (Exception e) {
             log.error("任务执行异常", e);
-        } finally {
-            boolean unlock = schedulingTaskMapper.unlock(name, IpUtil.getIP(), LocalTime.now()) > 0;
-            if (!unlock) {
-                log.info("锁释放失败={}", name);
-            }
         }
         return false;
     }
+
+
 }
