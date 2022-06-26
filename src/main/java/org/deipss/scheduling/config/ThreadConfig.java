@@ -2,7 +2,6 @@ package org.deipss.scheduling.config;
 
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,8 +13,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class ThreadConfig {
 
-    @Bean
-    @Qualifier("schedulingThreadPoolExecutor")
+    @Bean("schedulingThreadPoolExecutor")
     public ThreadPoolExecutor scheduling() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat(" task-scheduling-thread" + "-%d")
@@ -32,9 +30,8 @@ public class ThreadConfig {
         return executor;
     }
 
-    @Bean
-    @Qualifier("executeThreadPoolExecutor")
-    public ThreadPoolExecutor executor() {
+    @Bean("executeThreadPoolExecutor")
+     public ThreadPoolExecutor executor() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat(" task-execute-thread" + "-%d")
                 .setDaemon(false).build();
