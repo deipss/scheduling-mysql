@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.deipss.scheduling.enums.TaskStatusEnum;
-import org.springframework.scheduling.annotation.Scheduled;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 @Data
@@ -20,26 +20,27 @@ public class SchedulingTask {
     @TableField("lock_name")
     private String lockName;
 
+
     @TableField("task_status")
     private TaskStatusEnum taskStatus;
 
-    @TableField("start")
-    private Date start;
+    @TableField("start_time")
+    private LocalTime startTime;
 
     @TableField("next_start")
-    private Date nextStart;
+    private LocalTime nextStart;
 
-    @TableField("end")
-    private Date end;
+    @TableField("end_time")
+    private LocalTime endTime;
 
     @TableField("timeout")
-    private Date timeout;
+    private LocalTime timeout;
 
     @TableField("version")
     private int version;
 
     @TableField("try_lock_cnt")
-    private  int tryLockCnt;
+    private int tryLockCnt;
 
     @TableField("tm_create")
     private Date tmCreate;
