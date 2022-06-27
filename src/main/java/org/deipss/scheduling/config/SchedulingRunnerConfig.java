@@ -20,4 +20,5 @@ public class SchedulingRunnerConfig implements ApplicationRunner {
         log.info("执行启动成功，开始执行定时任务");
         taskScheduler.scheduling();
     }
+
 }
