@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 @Slf4j
 @Configuration
 @ConditionalOnProperty(prefix = "scheduling.mysql" ,value = "enabled")
-public class SchedulingRunnerConfig implements ApplicationRunner {
+@ComponentScan("org.deipss.scheduling")
+public class SchedulingMysqlRunnerConfig implements ApplicationRunner {
     @Autowired
     private TaskScheduler taskScheduler;
 

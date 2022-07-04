@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @ConfigurationProperties(prefix = "scheduling.mysql")
 @Configuration
 @MapperScan(value = "org.deipss.scheduling.dal.mapper", sqlSessionTemplateRef = "schedulingSqlSessionTemplate")
-public class DataSourceConfig {
+public class SchedulingMysqlDataSourceConfig {
 
     private String username;
     private String password;
@@ -40,6 +40,7 @@ public class DataSourceConfig {
 
     @Bean("schedulingTransactionManager")
     public PlatformTransactionManager transactionManager(@Qualifier("schedulingDataSource") DataSource ds) {
+
         return new DataSourceTransactionManager(ds);
     }
 

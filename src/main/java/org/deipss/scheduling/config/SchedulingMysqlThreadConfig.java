@@ -11,9 +11,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-public class ThreadConfig {
+public class SchedulingMysqlThreadConfig {
 
-    @Bean("schedulingThreadPoolExecutor")
+    @Bean("schedulingMysqlThreadPoolExecutor")
     public ThreadPoolExecutor scheduling() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat(" task-scheduling-thread" + "-%d")
@@ -30,7 +30,7 @@ public class ThreadConfig {
         return executor;
     }
 
-    @Bean("executeThreadPoolExecutor")
+    @Bean("schedulingExecuteThreadPoolExecutor")
      public ThreadPoolExecutor executor() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat(" task-execute-thread" + "-%d")

@@ -4,4 +4,9 @@ public interface Task<R> {
 
 
     R execute();
+
+
+    R doBiz();
+
+
 }

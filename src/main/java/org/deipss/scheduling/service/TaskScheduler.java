@@ -8,7 +8,6 @@ public interface TaskScheduler<R> {
 
     List<Task<R>> scan();
 
-    R execute(Task<R> task);
 
 
 }
