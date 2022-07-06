@@ -1,6 +1,7 @@
 package org.deipss.scheduling.service;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.deipss.scheduling.dal.entity.SchedulingTask;
 import org.deipss.scheduling.dal.entity.SchedulingTaskHistory;
@@ -18,6 +19,7 @@ import java.util.Locale;
 
 @AllArgsConstructor
 @Slf4j
+@NoArgsConstructor
 public abstract class AbstractTask implements Task<Boolean> {
 
     @Autowired

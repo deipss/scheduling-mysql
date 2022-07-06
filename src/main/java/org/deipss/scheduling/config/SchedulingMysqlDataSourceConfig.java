@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +21,11 @@ import javax.sql.DataSource;
 @MapperScan(value = "org.deipss.scheduling.dal.mapper", sqlSessionTemplateRef = "schedulingSqlSessionTemplate")
 public class SchedulingMysqlDataSourceConfig {
 
+    @Value("${scheduling.mysql.username}")
     private String username;
+    @Value("${scheduling.mysql.password}")
     private String password;
+    @Value("${scheduling.mysql.url}")
     private String url;
 
     @Bean("schedulingSqlSessionFactory")

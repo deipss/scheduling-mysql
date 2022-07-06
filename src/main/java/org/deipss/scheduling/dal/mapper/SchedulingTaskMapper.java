@@ -19,7 +19,7 @@ public interface SchedulingTaskMapper extends BaseMapper<SchedulingTask> {
     int lock(@Param("lockName") String lockName, @Param("ownerIp") String ownerIp, @Param("nowTime") LocalTime nowTime, @Param("nowDateTime") Date nowDateTime);
 
     @Update("update scheduling_task set owner_ip = '0.0.0.0', try_lock_cnt=0, next_time=#{nextTime} " +
-            "where lockName=#{lockName} and task_status ='LOCK'  and owner_ip = #{ownerIp}")
+            "where lockName=#{lockName} and task_status ='LOCKED'  and owner_ip = #{ownerIp}")
     int unlock(@Param("lockName") String lockName, @Param("ownerIp") String ownerIp, @Param("nextTime") Date nextTime);
 
 
@@ -31,4 +31,6 @@ public interface SchedulingTaskMapper extends BaseMapper<SchedulingTask> {
 
     @Select("select * from scheduling_task where lock_Name =  #{lockName} ")
     SchedulingTask selectByLockName(@Param("lockName") String lockName);
+    @Update("update scheduling_task set owner_ip = '0.0.0.0', try_lock_cnt=0, task_status ='UNLOCK'")
+    int init();
 }
