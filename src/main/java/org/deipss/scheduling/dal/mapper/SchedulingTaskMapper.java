@@ -31,6 +31,6 @@ public interface SchedulingTaskMapper extends BaseMapper<SchedulingTask> {
 
     @Select("select * from scheduling_task where lock_Name =  #{lockName} ")
     SchedulingTask selectByLockName(@Param("lockName") String lockName);
-    @Update("update scheduling_task set owner_ip = '0.0.0.0', try_lock_cnt=0, task_status ='UNLOCK'")
+    @Update("update scheduling_task set owner_ip = '0.0.0.0', try_lock_cnt=0, task_status ='UNLOCK' ,next_start = CURRENT_TIMESTAMP")
     int init();
 }

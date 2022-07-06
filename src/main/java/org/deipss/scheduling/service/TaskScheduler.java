@@ -9,5 +9,7 @@ public interface TaskScheduler<R> {
     List<Task<R>> scan();
 
 
+    int init();
+
 
 }

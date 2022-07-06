@@ -42,8 +42,8 @@ public class TaskSchedulerImpl implements TaskScheduler<Boolean> {
     @Override
     public void scheduling() {
         while (true) {
-            CompletableFuture<List<Task<Boolean>>> listCompletableFuture = CompletableFuture.supplyAsync(this::scan, schedulingThreadPoolExecutor);
             try {
+                CompletableFuture<List<Task<Boolean>>> listCompletableFuture = CompletableFuture.supplyAsync(this::scan, schedulingThreadPoolExecutor);
                 List<Task<Boolean>> tasks = listCompletableFuture.get();
                 if (null == tasks || tasks.size() < 1) {
                     continue;
@@ -54,10 +54,10 @@ public class TaskSchedulerImpl implements TaskScheduler<Boolean> {
                 }
                 List<Boolean> collect = completableFutures.stream().map(CompletableFuture::join).collect(Collectors.toList());
                 log.info("执行结果:::{}", collect);
+                SleepUtil.sleepSecond(10);
             } catch (InterruptedException | ExecutionException e) {
                 log.error("任务扫描或执行异常,信息={}", e.getMessage(), e);
             }
-            SleepUtil.sleepSecond(10);
         }
 
     }
@@ -82,6 +82,11 @@ public class TaskSchedulerImpl implements TaskScheduler<Boolean> {
             }
         }
         return taskList;
+    }
+
+    @Override
+    public int init() {
+        return schedulingTaskMapper.init();
     }
 
 

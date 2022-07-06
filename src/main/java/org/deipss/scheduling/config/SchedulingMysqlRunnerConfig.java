@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Slf4j
 @Configuration
-@ConditionalOnProperty(prefix = "scheduling.mysql" ,value = "enabled")
+@ConditionalOnProperty(prefix = "scheduling.mysql", value = "enabled")
 @ComponentScan("org.deipss.scheduling")
 public class SchedulingMysqlRunnerConfig implements ApplicationRunner {
     @Autowired
@@ -21,9 +21,10 @@ public class SchedulingMysqlRunnerConfig implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         log.info("执行启动成功，开始执行定时任务");
+        //SleepUtil.sleepSecond(10);
+        int init = taskScheduler.init();
+        log.info("初始化{}个任务完成", init);
         taskScheduler.scheduling();
-        SleepUtil.sleepSecond(10);
-        log.info("初始化完成");
     }
 
 }

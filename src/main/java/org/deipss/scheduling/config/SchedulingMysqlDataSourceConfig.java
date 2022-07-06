@@ -1,6 +1,8 @@
 package org.deipss.scheduling.config;
 
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.mysql.cj.jdbc.MysqlDataSource;
+import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -31,6 +33,9 @@ public class SchedulingMysqlDataSourceConfig {
     @Bean("schedulingSqlSessionFactory")
     public SqlSessionFactory masterSqlSessionFactory(@Qualifier("schedulingDataSource") DataSource ds) throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+        MybatisConfiguration mybatisConfiguration = new MybatisConfiguration();
+        mybatisConfiguration.setLogImpl(StdOutImpl.class);
+        factoryBean.setConfiguration(mybatisConfiguration);
         factoryBean.setDataSource(ds);
         return factoryBean.getObject();
     }
@@ -51,6 +56,7 @@ public class SchedulingMysqlDataSourceConfig {
     @Bean("schedulingSqlSessionTemplate")
     public SqlSessionTemplate sqlSessionTemplate(@Qualifier("schedulingSqlSessionFactory") SqlSessionFactory factory) {
         SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(factory);
+
         return sqlSessionTemplate;
     }
 
