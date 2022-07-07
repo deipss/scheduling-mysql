@@ -2,7 +2,6 @@ package org.deipss.scheduling.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.deipss.scheduling.service.TaskScheduler;
-import org.deipss.scheduling.util.SleepUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

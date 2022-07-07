@@ -23,7 +23,7 @@ public interface SchedulingTaskMapper extends BaseMapper<SchedulingTask> {
     int unlock(@Param("lockName") String lockName, @Param("ownerIp") String ownerIp, @Param("nextTime") Date nextTime);
 
 
-    @Select("select lock_name from scheduling_task where #{nowTime} between start_time and end_time and #{nowDateTime} > next_start and task_status ='UNLOCK'")
+    @Select("select lock_name from scheduling_task where #{nowTime} between start_time and end_time  and task_status ='UNLOCK' and #{nowDateTime}  > next_start")
     List<String> scanLockName(@Param("nowTime") LocalTime nowTime, @Param("nowDateTime") Date nowDateTime);
 
     @Select("select time_gap from scheduling_task where lock_Name =  #{lockName} ")
