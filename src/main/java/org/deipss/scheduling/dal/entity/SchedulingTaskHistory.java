@@ -41,7 +41,7 @@ public class SchedulingTaskHistory {
     @TableField("time_gap")
     private String timeGap;
 
-    @TableField("ownerIp")
+    @TableField("owner_ip")
     private String ownerIp;
 
     @TableField("tm_create")

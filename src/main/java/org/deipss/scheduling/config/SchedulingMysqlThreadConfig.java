@@ -21,7 +21,7 @@ public class SchedulingMysqlThreadConfig {
     @Bean("schedulingMysqlThreadPoolExecutor")
     public ThreadPoolExecutor scheduling() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
-                .setNameFormat(" task-scheduling-thread" + "-%d")
+                .setNameFormat("task-scheduling-thread" + "-%d")
                 .setDaemon(false).build();
 
 
@@ -44,7 +44,7 @@ public class SchedulingMysqlThreadConfig {
     @Bean("schedulingExecuteThreadPoolExecutor")
      public ThreadPoolExecutor executor() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
-                .setNameFormat(" task-execute-thread" + "-%d")
+                .setNameFormat("task-execute-thread" + "-%d")
                 .setDaemon(false).build();
 
 

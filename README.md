@@ -40,3 +40,12 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 # 版本
 - mysql 1.8
+# 注意点
+- application.property文件配置
+- scheduling_task 表中lock_name 为类全路径名
+```shell
+scheduling.mysql.enabled=true
+scheduling.mysql.url=jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+scheduling.mysql.username=***
+scheduling.mysql.password=***
+```

@@ -30,4 +30,13 @@ public class DBTest {
             System.out.println(string);
         }
     }
+
+    @Test
+    public void test1(){
+
+        Date date = schedulingTaskMapper.selectMinNextStart();
+        System.out.println(date);
+        long a = System.currentTimeMillis() - date.getTime();
+        System.out.println(a/1000);
+    }
 }

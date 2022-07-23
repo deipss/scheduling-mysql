@@ -9,6 +9,7 @@ import org.deipss.scheduling.dal.mapper.SchedulingTaskHistoryMapper;
 import org.deipss.scheduling.dal.mapper.SchedulingTaskMapper;
 import org.deipss.scheduling.enums.TaskStatusEnum;
 import org.deipss.scheduling.util.IpUtil;
+import org.deipss.scheduling.util.RetryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
@@ -42,26 +43,23 @@ public abstract class AbstractTask implements Task<Boolean> {
         SchedulingTask schedulingTask = schedulingTaskMapper.selectByLockName(this.getClass().getName());
         if (!lock()) {
             log.info("上锁失败");
-            schedulingTaskHistoryMapper.insert(getSchedulingTaskHistory(schedulingTask,TaskStatusEnum.LOCK_FAIL));
+            schedulingTaskHistoryMapper.insert(getSchedulingTaskHistory(schedulingTask, TaskStatusEnum.LOCK_FAIL));
             return false;
         }
         try {
             Boolean rst = doBiz();
-            if(rst){
-                schedulingTaskHistoryMapper.insert(getSchedulingTaskHistory(schedulingTask,TaskStatusEnum.DOWN));
-            }
-
+            schedulingTaskHistoryMapper.insert(getSchedulingTaskHistory(schedulingTask, TaskStatusEnum.DOWN));
             return rst;
         } catch (Exception e) {
             log.error("任务执行异常", e);
-            schedulingTaskHistoryMapper.insert(getSchedulingTaskHistory(schedulingTask,TaskStatusEnum.EXCEPTION));
+            schedulingTaskHistoryMapper.insert(getSchedulingTaskHistory(schedulingTask, TaskStatusEnum.EXCEPTION));
             return false;
         } finally {
-            unlock();
+            RetryUtil.retry(this::unlock);
         }
     }
 
-    private SchedulingTaskHistory getSchedulingTaskHistory(SchedulingTask t , TaskStatusEnum taskStatusEnum) {
+    private SchedulingTaskHistory getSchedulingTaskHistory(SchedulingTask t, TaskStatusEnum taskStatusEnum) {
         SchedulingTaskHistory schedulingTaskHistory = new SchedulingTaskHistory();
         schedulingTaskHistory.setLockName(t.getLockName());
         schedulingTaskHistory.setTaskStatus(taskStatusEnum);
