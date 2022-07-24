@@ -49,3 +49,6 @@ scheduling.mysql.url=jdbc:mysql://localhost:3306/testdb?useUnicode=true&characte
 scheduling.mysql.username=***
 scheduling.mysql.password=***
 ```
+# 新建任务
+- 在scheduling_task表中新建一条记录
+- 实现org.deipss.scheduling.service.AbstractTask类，重写doBiz()方法，需要将此类注入到spring容器中

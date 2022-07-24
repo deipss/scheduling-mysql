@@ -54,6 +54,7 @@ public class TaskSchedulerImpl implements TaskScheduler<Boolean> {
                 }
                 List<Boolean> collect = completableFutures.stream().map(CompletableFuture::join).collect(Collectors.toList());
                 log.info("执行结果:::{}", collect);
+                SleepUtil.sleepSecond(calculateSleepSeconds());
             } catch (InterruptedException | ExecutionException e) {
                 log.error("任务扫描或执行异常,信息={}", e.getMessage(), e);
             }
@@ -92,7 +93,7 @@ public class TaskSchedulerImpl implements TaskScheduler<Boolean> {
     private int calculateSleepSeconds() {
         Date date = schedulingTaskMapper.selectMinNextStart();
         int a = (int) (System.currentTimeMillis() - date.getTime()) / 1000;
-        return Math.min(Math.max(a, 1), 2);
+        return Math.max(Math.max(a, 1), 2);
     }
 
 }
