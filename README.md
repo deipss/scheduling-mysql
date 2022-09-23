@@ -52,3 +52,16 @@ scheduling.mysql.password=***
 # 新建任务
 - 在scheduling_task表中新建一条记录
 - 实现org.deipss.scheduling.service.AbstractTask类，重写doBiz()方法，需要将此类注入到spring容器中
+```java
+@Slf4j
+@Component // 使用spring进行生命周期管理
+public class TaskA extends AbstractTask {
+    @Override
+    public Boolean doBiz() {
+        SleepUtil.sleepSecond(3);
+        log.info("任务运行A");
+        return true;
+    }
+}
+
+```
