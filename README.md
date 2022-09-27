@@ -1,7 +1,7 @@
 # 使用mysql实现定时任务的执行
 - 多机唯一性：一个任务只能被一台机器执行
 # sql
-```roomsql
+```mysql
 DROP TABLE IF EXISTS `scheduling_task`;
 CREATE TABLE `scheduling_task`  (
   `id` bigint(0) NOT NULL COMMENT '主键',
@@ -42,13 +42,13 @@ SET FOREIGN_KEY_CHECKS = 1;
 - mysql 1.8
 # 注意点
 - application.property文件配置
-- scheduling_task 表中lock_name 为类全路径名
 ```shell
 scheduling.mysql.enabled=true
 scheduling.mysql.url=jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
 scheduling.mysql.username=***
 scheduling.mysql.password=***
 ```
+- scheduling_task 表中lock_name 为类全路径名
 # 新建任务
 - 在scheduling_task表中新建一条记录
 - 实现org.deipss.scheduling.service.AbstractTask类，重写doBiz()方法，需要将此类注入到spring容器中
