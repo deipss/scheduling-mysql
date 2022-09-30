@@ -51,7 +51,7 @@ scheduling.mysql.password=***
 - scheduling_task 表中lock_name 为类全路径名
 # 新建任务
 - 在scheduling_task表中新建一条记录
- ![](release/img/db_record.png.gif)
+ ![](release/img/db_record.png)
 时间间隔字段gap 使用1s 4m 8h 代码 1秒 4分钟 8小时
 - 实现org.deipss.scheduling.service.AbstractTask类，重写doBiz()方法，
 - 使用@Component，需要将此类注入到spring容器中
