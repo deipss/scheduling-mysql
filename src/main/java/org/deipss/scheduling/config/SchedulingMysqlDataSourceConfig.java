@@ -35,7 +35,7 @@ public class SchedulingMysqlDataSourceConfig {
     public SqlSessionFactory masterSqlSessionFactory(@Qualifier("schedulingDataSource") DataSource ds) throws Exception {
         MybatisSqlSessionFactoryBean factoryBean = new MybatisSqlSessionFactoryBean();
         MybatisConfiguration mybatisConfiguration = new MybatisConfiguration();
-        mybatisConfiguration.setLogImpl(StdOutImpl.class);
+        /// mybatisConfiguration.setLogImpl(StdOutImpl.class);
         factoryBean.setConfiguration(mybatisConfiguration);
         factoryBean.setDataSource(ds);
         return factoryBean.getObject();
