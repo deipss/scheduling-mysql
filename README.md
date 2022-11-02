@@ -1,5 +1,8 @@
-# 使用mysql实现定时任务的执行
+# 使用mysql实现定时任务的执行 
 - 多机唯一性：一个任务只能被一台机器执行
+
+[English document](https://github.com/deipss/scheduling-mysql/blob/master/README-en.md)
+
 # sql
 ```mysql
 DROP TABLE IF EXISTS `scheduling_task`;
