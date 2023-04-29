@@ -1,4 +1,4 @@
-package org.deipss.scheduling;
+package org.deipss.scheduling.db;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

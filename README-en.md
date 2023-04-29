@@ -50,6 +50,15 @@ scheduling.mysql.password=***
 ```
 # New task
 - insert record into scheduling_task table
+```roomsql
+INSERT INTO testdb.scheduling_task
+(id, lock_name, task_status, start_time, end_time, next_start, try_lock_cnt, time_gap, owner_ip, tm_create, tm_modify)
+VALUES(1, 'org.deipss.scheduling.db.impl.TaskA', 'UNLOCK', '00:00:00', '23:00:00', '2023-04-30 00:20:09.873', 0, '30S', '0.0.0.0', '2023-04-16 12:25:46', '2023-04-29 16:19:39');
+INSERT INTO testdb.scheduling_task
+(id, lock_name, task_status, start_time, end_time, next_start, try_lock_cnt, time_gap, owner_ip, tm_create, tm_modify)
+VALUES(2, 'org.deipss.scheduling.db.impl.TaskB', 'UNLOCK', '00:00:00', '23:00:00', '2023-04-30 00:20:08.892', 0, '30S', '0.0.0.0', '2023-04-16 12:25:46', '2023-04-29 16:19:38');
+
+```
  ![](release/img/db_record.png)
 column gap meaning the time interval ,e.g. 1s 4m 8h 
 - implements org.deipss.scheduling.service.AbstractTask,override doBiz().
