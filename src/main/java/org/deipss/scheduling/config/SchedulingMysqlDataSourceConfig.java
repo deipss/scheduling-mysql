@@ -67,7 +67,6 @@ public class SchedulingMysqlDataSourceConfig {
         mysqlDataSource.setPassword(password);
         mysqlDataSource.setUser(username);
         mysqlDataSource.setUrl(url);
-
         return mysqlDataSource;
     }
 

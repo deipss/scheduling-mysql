@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("org.deipss.scheduling")
 public class SchedulingMysqlRunnerConfig implements ApplicationRunner {
     @Autowired
-    private TaskScheduler taskScheduler;
+    private TaskScheduler<?> taskScheduler;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
