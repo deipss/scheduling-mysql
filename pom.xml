@@ -33,7 +33,6 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -141,7 +140,7 @@
         <developer>
             <id>deipss</id>
             <name>hxl</name>
-            <email>deipss@11.com</email>
+            <email>deipss@qq.com</email>
             <roles>
                 <role>Project Manager</role>
                 <role>Architect</role>

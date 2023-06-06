@@ -10,8 +10,8 @@ public class IpUtil {
 
     public static String getIP() {
         try {
-            InetAddress addr = InetAddress.getLocalHost();
-            return addr.getHostAddress();
+            InetAddress ip = InetAddress.getLocalHost();
+            return ip.getHostAddress();
         } catch (UnknownHostException e) {
             log.error("获取IP失败", e);
         }

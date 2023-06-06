@@ -14,7 +14,7 @@ public enum TaskStatusEnum {
     EXCEPTION("EXCEPTION","执行异常"),
 
     ;
-    private String code;
-    private String name;
+    private final String code;
+    private final String name;
 
 }
