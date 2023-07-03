@@ -1,0 +1,26 @@
+@startuml
+
+package "SchedulingMysqlThreadConfig" {
+  [Scheduling thread]
+  [Runner thread]
+}
+
+node "SchedulingMysqlRunnerConfig" {
+  run - [TaskScheduler]
+}
+
+folder "Task" {
+  [Task 1]
+  [Task 2]
+  [Task 3]
+}
+[TaskScheduler] --> [Scheduling thread]
+[TaskScheduler] --> [Runner thread]
+[Runner thread] --> [Task 1]
+[Runner thread] --> [Task 2]
+[Runner thread] --> [Task 3]
+
+
+
+
+@enduml

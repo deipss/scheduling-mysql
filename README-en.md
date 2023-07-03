@@ -1,5 +1,8 @@
 # Scheduling java task with mysql
 - Multi-machine uniqueness: A task can only be performed by one machine
+
+![invoke.png](release%2Fimg%2Finvoke.png)
+
 # Sql script
 ```mysql
 DROP TABLE IF EXISTS `scheduling_task`;
